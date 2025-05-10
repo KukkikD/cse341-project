@@ -14,6 +14,11 @@ app.use((req, res, next) => {
   next();
 });
 
+/* simple route for root path */
+app.get('/', (req, res) => {
+  res.send('API is running.');
+});
+
 /* route */
 app.use('/contact', contactRoutes); 
 

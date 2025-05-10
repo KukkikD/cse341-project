@@ -38,3 +38,16 @@ Content-Type: application/json
 
 ### DELETE - Delete contact
 DELETE http://localhost:8080/contact/681efb6183e1439767b1e360
+
+//DEPLOY
+### 
+GET https://cse340-st3g.onrender.com/contact
+
+###
+GET https://cse340-st3g.onrender.com/contact/681edf4b58dc47667c20c011
+
+###
+GET https://cse340-st3g.onrender.com/contact/681ee53b58dc47667c20c015
+
+###
+GET https://cse340-st3g.onrender.com/contact/681ee54558dc47667c20c016
