@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { connectToDb } = require('./db/connection');
-const contactRoutes = require('./routes/contact');
+const contactRoutes = require('./routes');
 
 
 const app = express();
@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 });
 
 /* route */
-app.use('/contact', contactRoutes); 
+app.use('/', contactRoutes); 
 
 
 // Start the server *after* DB connects
