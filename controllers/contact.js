@@ -30,21 +30,26 @@ const createContact = async (req, res, next) => {
 };
 
 const updateContact = async (req, res) => {
-  const id = new ObjectId(String(req.params.id));
-  const contact = {
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    favoriteColor: req.body.favoriteColor,
-    birthday: req.body.birthday
-  };
+  try {
+    const id = new ObjectId(String(req.params.id));
 
-  const result = await getDb().collection('contact_w01').updateOne({ _id: id }, contact);
-  
-  if (result.modifiedCount > 0) {
-    res.status(204).send(); // No content (success)
-  } else {
-    res.status(404).json({ message: 'Contact not found or no change made.' });
+    const contact = {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      favoriteColor: req.body.favoriteColor,
+      birthday: req.body.birthday
+    };
+
+    const result = await getDb().collection('contact_w01').updateOne({ _id: id },{ $set: contact });
+
+    if (result.modifiedCount > 0) {
+      res.status(204).send(); // Success but no content
+    } else {
+      res.status(404).json({ message: 'Contact not found or no change made.' });
+    }
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to update contact.' });
   }
 };
 
