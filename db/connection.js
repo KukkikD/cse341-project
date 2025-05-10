@@ -3,7 +3,7 @@ const MongoClient = require('mongodb').MongoClient;
 const dotenv = require('dotenv');
 dotenv.config(); //load info from .env
 
-const url = process.env.MONGODB_URI; //hide the real info
+const url = process.env.MONGODB_URI; //hide the real infomation 
 
 
 let db;
