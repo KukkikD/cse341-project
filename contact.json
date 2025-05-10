@@ -1,0 +1,26 @@
+{
+  "contact":{
+    "firstName": "Amornrat",
+    "lastName": "Howard",
+    "email": "kukkik@example.com",
+    "favoriteColor": "pink",
+    "birthday": "1982-06-10"
+  },
+
+  "contact2":{
+    "firstName": "Rob",
+    "lastName": "Howard",
+    "email": "rob@example.com",
+    "favoriteColor": "blue",
+    "birthday": "1970-05-12"
+  },
+  
+  "contact3":{
+    "firstName": "Lisa",
+    "lastName": "Smith",
+    "email": "lisa@example.com",
+    "favoriteColor": "purple",
+    "birthday": "1990-05-10"
+  }
+  
+}

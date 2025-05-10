@@ -10,7 +10,7 @@ let db;
 
 async function connectToDb() {
   try {
-    const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+    const client = await MongoClient.connect(url); // for MongoDB new v. 4 up
     db = client.db("cse341_activity"); // mangoDB db name
     console.log('✅ Connected to MongoDB');
   } catch (err) {
