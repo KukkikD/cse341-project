@@ -1,0 +1,25 @@
+//PORT LOCAL
+
+### Get all
+GET http://localhost:8080/contact
+
+### Get Contact
+GET http://localhost:8080/contact/681edf4b58dc47667c20c011
+
+### Get Contact2
+GET http://localhost:8080/contact/681edf4b58dc47667c20c014
+
+### Get Contact3
+GET http://localhost:8080/contact/681edf4b58dc47667c20c015
+
+### Add new contact
+POST http://localhost:8080/contact HTTP/1.1
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john@example.com",
+  "favoriteColor": "green",
+  "birthday": "1995-09-15"
+}
