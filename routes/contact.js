@@ -17,4 +17,4 @@ router.put('/:id', contactController.updateContact);
 // DELETE a contact
 router.delete('/:id', contactController.deleteContact);
 
-module.exports = router;
+module.exports = router; 
