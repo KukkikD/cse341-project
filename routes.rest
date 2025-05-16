@@ -18,10 +18,10 @@ Content-Type: application/json
 
 {
   "firstName": "John",
-  "lastName": "Doe",
-  "email": "john@example.com",
-  "favoriteColor": "green",
-  "birthday": "1995-09-15"
+  "lastName": "Smith",
+  "email": "jsmith@example.com",
+  "favoriteColor": "red",
+  "birthday": "1990-09-15"
 }
 
 ### PUT - Update contact
@@ -57,11 +57,11 @@ POST https://cse340-st3g.onrender.com/contact HTTP/1.1
 Content-Type: application/json
 
 {
-  "firstName": "John",
-  "lastName": "Doe",
+  "firstName": "Abligal",
+  "lastName": "Roger",
   "email": "john@example.com",
   "favoriteColor": "green",
-  "birthday": "1995-09-15"
+  "birthday": "1990-12-12"
 }
 
 ### PUT - Update contact
@@ -77,4 +77,4 @@ Content-Type: application/json
 }
 
 ### Delete contact
-DELETE  https://cse340-st3g.onrender.com/contact/ID
+DELETE  https://cse340-st3g.onrender.com/contact/6826e7c914622f6f3898c1ef
