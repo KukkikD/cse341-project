@@ -1,26 +1,26 @@
-const { getDb } = require('../db/connection');
-const ObjectId = require('mongodb').ObjectId;
+const { getDb } = require("../db/connection");
+const ObjectId = require("mongodb").ObjectId;
 
 // Get all contacts
 const getAll = async (req, res) => {
-  const result = await getDb().collection('contact_w01').find().toArray();
+  const result = await getDb().collection("contact_w01").find().toArray();
   res.status(200).json(result);
 };
 
 // Get a single contact by ID
 const getSingle = async (req, res) => {
   const id = new ObjectId(String(req.params.id)); //Used to convert a MongoDB string that is an _id into an object that can be used with queries.
-  const result = await getDb().collection('contact_w01').findOne({ _id: id });
+  const result = await getDb().collection("contact_w01").findOne({ _id: id });
 
   if (result) {
     res.status(200).json(result); // OK
   } else {
-    res.status(404).json({ message: 'Contact not found' }); // Not Found, changed for professional look as recommended by grader
+    res.status(404).json({ message: "Contact not found" }); // Not Found, changed for professional look as recommended by grader
   }
 };
 
 // Create New contact
-const createContact = async (req, res, next) => {
+const createContact = async (req, res) => {
   try {
     const contact = {
       firstName: req.body.firstName,
@@ -29,11 +29,12 @@ const createContact = async (req, res, next) => {
       favoriteColor: req.body.favoriteColor,
       birthday: req.body.birthday
     };
-    const result = await getDb().collection('contact_w01').insertOne(contact);
+    const result = await getDb().collection("contact_w01").insertOne(contact);
 
-    res.status(201).json({ message: 'Contact created!', contactId: result.insertedId });
+    res.status(201).json({ message: "Contact created!", contactId: result.insertedId });
   } catch (err) {
-    res.status(500).json({ error: 'Failed to create contact.' });
+  console.error(err);
+  res.status(500).json({ error: err.message });
   }
 };
 
@@ -50,27 +51,30 @@ const updateContact = async (req, res) => {
       birthday: req.body.birthday
     };
 
-    const result = await getDb().collection('contact_w01').updateOne({ _id: id },{ $set: contact });
+    const result = await getDb()
+      .collection("contact_w01")
+      .updateOne({ _id: id }, { $set: contact });
 
     if (result.modifiedCount > 0) {
-      res.status(200).json({message: 'Contact updated.'}); 
+      res.status(200).json({ message: "Contact updated." });
     } else {
-      res.status(404).json({ message: 'Contact not found or no change made.' });
+      res.status(404).json({ message: "Contact not found or no change made." });
     }
   } catch (err) {
-    res.status(500).json({ error: 'Failed to update contact.' });
+    console.error(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
 // Delete Contact by ID
 const deleteContact = async (req, res) => {
   const id = new ObjectId(String(req.params.id));
-  const result = await getDb().collection('contact_w01').deleteOne({ _id: id });
-  
+  const result = await getDb().collection("contact_w01").deleteOne({ _id: id });
+
   if (result.deletedCount > 0) {
     res.status(204).send(); // status 204 no content, no body as recommended by the grader.
   } else {
-    res.status(404).json({ message: 'Contact not found' });
+    res.status(404).json({ message: "Contact not found" });
   }
 };
 

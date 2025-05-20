@@ -1,6 +1,6 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const contactController = require('../controllers/contact');
+const contactController = require("../controllers/contact");
 
 // GET all contacts
 /**
@@ -12,7 +12,7 @@ const contactController = require('../controllers/contact');
  *       200:
  *         description: A list of contacts
  */
-router.get('/', contactController.getAll);
+router.get("/", contactController.getAll);
 
 // GET a single contact by ID
 /**
@@ -30,7 +30,7 @@ router.get('/', contactController.getAll);
  *       200:
  *         description: A single contact
  */
-router.get('/:id', contactController.getSingle);
+router.get("/:id", contactController.getSingle);
 
 // POST a new contact
 /**
@@ -66,7 +66,7 @@ router.get('/:id', contactController.getSingle);
  *       201:
  *         description: Contact created
  */
-router.post('/', contactController.createContact);
+router.post("/", contactController.createContact);
 
 // PUT update a contact
 /**
@@ -102,7 +102,7 @@ router.post('/', contactController.createContact);
  *       200:
  *         description: Contact updated
  */
-router.put('/:id', contactController.updateContact);
+router.put("/:id", contactController.updateContact);
 
 // DELETE a contact
 /**
@@ -120,6 +120,6 @@ router.put('/:id', contactController.updateContact);
  *       200:
  *         description: Contact deleted
  */
-router.delete('/:id', contactController.deleteContact);
+router.delete("/:id", contactController.deleteContact);
 
-module.exports = router; 
+module.exports = router;
