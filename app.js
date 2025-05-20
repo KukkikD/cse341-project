@@ -29,10 +29,21 @@ app.get("/", (req, res) => {
 /* Main route */
 app.use("/", contactRoutes);
 
-/* start server */
+/* Global Error Handlers - place before server*/
+process.on("uncaughtException", (err, origin) => {
+  console.error("❗ Uncaught Exception:", err.message);
+  console.error("Origin:", origin);
+});
+
+process.on("unhandledRejection", (reason, promise) => {
+  console.error("❗ Unhandled Rejection at:", promise);
+  console.error("Reason:", reason);
+});
+
+/* Start server */
 connectToDb().then(() => {
   const PORT = process.env.PORT || 8080;
   app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}.`);
+    console.log(`🚀 Server is running on port ${PORT}.`);
   });
 });

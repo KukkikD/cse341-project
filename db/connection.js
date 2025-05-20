@@ -1,24 +1,21 @@
-const MongoClient = require("mongodb").MongoClient;
-
+const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+
 dotenv.config(); //load info from .env
 
-const url = process.env.MONGODB_URI; //hide the real infomation
-
-let db;
+const url = process.env.MONGODB_URI; //my mongoDB URL (code to hide the real infomation)
 
 async function connectToDb() {
   try {
-    const client = await MongoClient.connect(url); // for MongoDB new v. 4 up
-    db = client.db("cse341_activity"); // mangoDB db name
-    console.log("✅ Connected to MongoDB");
+    await mongoose.connect(url, {
+      //useNewUrlParser: true, // node.js ver 4.0 dosen't effect this code 
+     // useUnifiedTopology: true,// node.js ver 4.0 dosen't effect this code 
+      dbName: "cse341_activity", // my DB name
+    });
+    console.log("✅ Connected to MongoDB with Mongoose");
   } catch (err) {
     console.error("❌ MongoDB connection failed:", err);
   }
 }
 
-function getDb() {
-  return db;
-}
-
-module.exports = { connectToDb, getDb };
+module.exports = { connectToDb };
