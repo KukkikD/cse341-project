@@ -8,9 +8,9 @@ const url = process.env.MONGODB_URI; //my mongoDB URL (code to hide the real inf
 async function connectToDb() {
   try {
     await mongoose.connect(url, {
-      //useNewUrlParser: true, // node.js ver 4.0 dosen't effect this code 
-     // useUnifiedTopology: true,// node.js ver 4.0 dosen't effect this code 
-      dbName: "cse341_activity", // my DB name
+      //useNewUrlParser: true, // node.js ver 4.0 dosen't effect this code
+      // useUnifiedTopology: true,// node.js ver 4.0 dosen't effect this code
+      dbName: "cse341_activity" // my DB name
     });
     console.log("✅ Connected to MongoDB with Mongoose");
   } catch (err) {

@@ -1,14 +1,14 @@
 //const { getDb } = require("../db/connection"); //mangoDB native 
-const Contact = require('../models/contact'); // use mongoose instead of mangoDB native
-const ObjectId = require("mongodb").ObjectId;
+const Contact = require("../models/contact"); // use mongoose instead of mangoDB native
+//const ObjectId = require("mongodb").ObjectId;
 
 // Get all contacts
 const getAll = async (req, res) => {
   try {
     const contacts = await Contact.find();
     res.status(200).json(contacts);
-  } catch (err) {
-    res.status(500).json({ error:  'Failed to fetch contacts.' });
+  } catch {
+    res.status(500).json({ error:  "Failed to fetch contacts." });
   }
 };
 
@@ -17,10 +17,10 @@ const getAll = async (req, res) => {
 const getSingle = async (req, res) => {
   try {
     const contact = await Contact.findById(req.params.id);
-    if (!contact) return res.status(404).json({ message: 'Contact not found' });
+    if (!contact) return res.status(404).json({ message: "Contact not found" });
     res.status(200).json(contact);
-  } catch (err) {
-    res.status(400).json({ error: 'Invalid contact ID format.' });
+  } catch {
+    res.status(400).json({ error: "Invalid contact ID format." });
   }
 };
 
@@ -30,12 +30,12 @@ const createContact = async (req, res) => {
   try {
     const contact = new Contact(req.body);
     await contact.save();
-    res.status(201).json({ message: 'Contact created!', contactId: contact._id });
+    res.status(201).json({ message: "Contact created!", contactId: contact._id });
   } catch (err) {
-    if (err.name === 'ValidationError') {
+    if (err.name === "ValidationError") {
       res.status(400).json({ error: err.message }); // Bad Request
     } else {
-      res.status(500).json({ error: 'Failed to create contact.' });
+      res.status(500).json({ error: "Failed to create contact." });
     }
   }
 };
@@ -48,13 +48,13 @@ const updateContact = async (req, res) => {
       new: true,
       runValidators: true
     });
-    if (!result) return res.status(404).json({ message: 'Contact not found' });
-    res.status(200).json({ message: 'Contact updated.' });
+    if (!result) return res.status(404).json({ message: "Contact not found" });
+    res.status(200).json({ message: "Contact updated." });
   } catch (err) {
-    if (err.name === 'ValidationError') {
+    if (err.name === "ValidationError") {
       res.status(400).json({ error: err.message });
     } else {
-      res.status(500).json({ error: 'Failed to update contact.' });
+      res.status(500).json({ error: "Failed to update contact." });
     }
   }
 };
@@ -64,10 +64,10 @@ const updateContact = async (req, res) => {
 const deleteContact = async (req, res) => {
   try {
     const result = await Contact.findByIdAndDelete(req.params.id);
-    if (!result) return res.status(404).json({ message: 'Contact not found' });
+    if (!result) return res.status(404).json({ message: "Contact not found" });
     res.status(204).send();
-  } catch (err) {
-    res.status(400).json({ error: 'Invalid contact ID format.' });
+  } catch {
+    res.status(400).json({ error: "Invalid contact ID format." });
   }
 };
 
